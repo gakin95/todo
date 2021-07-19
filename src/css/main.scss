@@ -1,0 +1,214 @@
+$BrightBlue: hsl(220, 98%, 61%);
+
+//---------------checkbox
+$unchecked: hsl(192, 100%, 67%);
+$checked: hsl(280, 87%, 65%);
+
+//---------------------------Light Theme
+$VeryLightGray: hsl(0, 0%, 98%);
+$VeryLightGrayishBlue: hsl(236, 33%, 92%);
+$LightGrayishBlue: hsl(233, 11%, 84%);
+$DarkGrayishBlue: hsl(236, 9%, 61%);
+$VeryDarkGrayishBlue: hsl(235, 19%, 35%);
+
+//---------------------------Dark Theme
+
+$VeryDarkBlue: hsl(235, 21%, 11%);
+$VeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
+$LightGrayishBlue: hsl(234, 39%, 85%);
+$LightGrayishBluehover: hsl(236, 33%, 92%);
+$DarkGrayishBlue: hsl(234, 11%, 52%);
+$VeryDarkGrayishBlue: hsl(233, 14%, 35%);
+$itemDark: #25273c;
+
+.root {
+  min-height: 100vh;
+}
+header {
+  height: 40vh;
+  position: relative;
+}
+.backgroundImgDark{
+  background-image: url("../images/bg-desktop-dark.jpg");
+  @media screen and (max-width: 600px){
+    background-image: url("../images/bg-mobile-dark.jpg");
+  }
+}
+.backgroundImgLight{
+  background-image: url("../images/bg-desktop-light.jpg");
+  @media screen and (max-width: 600px){
+    background-image: url("../images/bg-mobile-light.jpg");
+  }
+}
+.dark {
+  background-color: $VeryDarkBlue;
+}
+.light {
+  background-color: $VeryLightGray;
+}
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .top {
+    position: absolute;
+    top: 100px;
+    width: 35%;
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .dark {
+      background-color: $itemDark;
+    }
+    .light {
+      background-color: white;
+    }
+    .title {
+      p {
+        color: $VeryLightGray;
+        font-weight: 600;
+        font-size: 40px;
+        letter-spacing: 8px;
+        text-transform: uppercase;
+      }
+    }
+    .addtodo {
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      padding: 2rem;
+      margin-bottom: 10px;
+      .dark {
+        border: 1px solid $LightGrayishBluehover;
+      }
+      .light {
+        border: 1px solid $VeryLightGrayishBlue;
+      }
+      .iconContainer {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        .icon {
+          width: 100%;
+        }
+      }
+      .children {
+        margin-left: 16px;
+        .input {
+            background-color: transparent;
+            border: 0px solid;
+            height: 20px;
+            width: 160px;
+            font-size: 18px;
+            color: #CCC;
+            &:focus {
+                outline: none;
+            }
+        }
+        .dark {
+            color:  $LightGrayishBluehover;
+          }
+          .light {
+            color: #000;
+          }
+      }
+    }
+    .itemContainer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .item {
+        display: flex;
+        align-items: center;
+        padding-left: 2rem;
+        .dark {
+          border: 1px solid $LightGrayishBluehover;
+        }
+        .light {
+          border: 1px solid $VeryLightGrayishBlue;
+        }
+        .unchecked {
+          background-color: $unchecked;
+        }
+        .checked {
+          background-color: $checked;
+        }
+        .iconContainer {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          cursor: pointer;
+          .icon {
+            width: 100%;
+          }
+        }
+        .children {
+          margin-left: 16px;
+          text-transform: capitalize;
+          position: relative;
+          display: inline-block;
+          span {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 50%;
+        }
+        .spanDark{
+          border-top: 1px solid $LightGrayishBluehover;
+        }
+        .spanLight{
+          border-top: 1px solid #000;
+        }
+          .darkText {
+            color:  $LightGrayishBluehover;
+          }
+          .lightText {
+            color: #000;
+          }
+        }
+      }
+      .delete{
+        padding-right: 2rem;
+        cursor: pointer;
+      }
+    }
+    .borderBottomLight{
+      border-bottom: 1px solid $VeryLightGray;
+    }
+    .borderBottomDark{
+      border-bottom: 2px solid $VeryLightGray;
+    }
+    .footer{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: $DarkGrayishBlue;
+      p{
+        cursor: pointer;
+        text-transform: capitalize;
+        &:hover{
+          color:$BrightBlue
+        }
+      }
+      .dflex{
+        display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 35%;
+      }
+    }
+    @media screen and (max-width: 900px){
+      width: 70%;
+      top: 25px
+    }
+    @media screen and (max-width: 600px){
+      width: 90%;
+      top: 25px
+    }
+  }
+}
+
+
