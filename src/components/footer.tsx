@@ -10,14 +10,23 @@ const Footer: React.FC<{
   onGetAllCompleted: () => void;
   onClearAllCompleted: () => void;
 }> = ({ bgColor, num, onGetAll, onGetAllActive, onGetAllCompleted,onClearAllCompleted  }) => (
-  <div className={`footer ${bgColor === "dark" ? "dark" : "light"}`}>
-    <p>{num} items left</p>
+  <div>
+    <div className={`footer ${bgColor === "dark" ? "dark" : "light"}`}>
+    <p >{num} items left</p>
     <div className="dflex">
-      <p onClick={onGetAll}>all</p>
+      <p onClick={onGetAll} >all</p>
       <p onClick={onGetAllActive}>active</p>
       <p onClick={onGetAllCompleted}>completed</p>
     </div>
-    <p onClick={onClearAllCompleted}>Clear completed</p>
+    <p onClick={onClearAllCompleted} >Clear completed</p>
+  </div>
+  <div className={`footer ${bgColor === "dark" ? "dark" : "light"} showonSmallScreen`}>
+  <div className="smallScreen">
+      <p onClick={onGetAll} >all</p>
+      <p onClick={onGetAllActive}>active</p>
+      <p onClick={onGetAllCompleted}>completed</p>
+    </div>
+  </div>
   </div>
 );
 

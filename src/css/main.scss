@@ -30,6 +30,9 @@ header {
 }
 .backgroundImgDark{
   background-image: url("../images/bg-desktop-dark.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   @media screen and (max-width: 600px){
     background-image: url("../images/bg-mobile-dark.jpg");
   }
@@ -186,6 +189,8 @@ section {
       align-items: center;
       justify-content: space-between;
       color: $DarkGrayishBlue;
+      padding-right: 2rem;
+      padding-left: 2rem;
       p{
         cursor: pointer;
         text-transform: capitalize;
@@ -197,9 +202,29 @@ section {
         display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 35%;
+      //flex-wrap: wrap;
+      width: 40%;
+      @media screen and (max-width: 600px){
+        display: none;
+      }
       }
     }
+    .showonSmallScreen{
+      display: flex;
+     align-items: center;
+     justify-content: center;
+     .smallScreen{
+       display: flex;
+       align-items: center;
+       p{
+         padding-right: 10px;
+       }
+     }
+     margin-top: 2rem;
+       @media screen and (min-width: 600px){
+         display: none;
+       }
+     }
     @media screen and (max-width: 900px){
       width: 70%;
       top: 25px
