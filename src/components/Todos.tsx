@@ -1,46 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../css/main.scss";
+import { useDispatch } from "react-redux";
+import { useSelector, RootStateOrAny } from "react-redux";
+import { Dispatch } from "redux"
+
 import iconSun from "../images/icon-sun.svg";
 import iconMoon from "../images/icon-moon.svg";
 import AddTodo from "./newTodos";
 import TodoItem from "./todoItem";
 import Footer from "./footer";
 import { Item } from "../models/todo";
+import { setTheme,invokeActions, deletedActions, updatedActions, clearCompletedActions
+} from '../store/actions'
+
 
 const Todos = () => {
-  const [backgroundColor, setBackgroundColor] = useState("dark");
+  const dispatch: Dispatch<any> = useDispatch();
+  const backgroundColor = useSelector((state : RootStateOrAny) => state.theme.backgroundColor); 
+  const allTodos:Item[] = useSelector((state : RootStateOrAny) => state.todo.todos); 
+  const allActiveTodos:Item[] = useSelector((state : RootStateOrAny) => state.todo.active); 
+  const allCompletedTodos:Item[] = useSelector((state : RootStateOrAny) => state.todo.completed); 
   const [addTodo, setAddTodo] = useState("");
   const [todos, setTodos] = useState<Item[]>([]);
+
+  useEffect(() => {
+    setTodos(allTodos)
+  },[allTodos])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddTodo(e.target.value);
   };
+const clearCompletedTodos = () => {
+  dispatch(clearCompletedActions())
+}
 
   const handleSubmit = (e: any) => {
     if (!addTodo) return;
     if (e.key === "Enter") {
-      const list = [...todos];
       const input: Item = {
         title: addTodo,
         checked: false,
         id: new Date().toISOString(),
       };
-      list.push(input);
-      console.table(list);
-      setTodos(list);
+      dispatch(invokeActions(input))
       setAddTodo("");
     }
   };
   const deleteItem = (id: string) => {
-    setTodos(todos.filter((item) => item.id !== id));
+    dispatch(deletedActions(id));
   };
   const checkItem = (id: string) => {
-    const lists = [...todos];
-    const curItem: Item | any = lists.find((item) => item.id === id);
-    const index = lists.indexOf(curItem);
-    const action = lists[index];
-    action.checked = !action.checked;
-    setTodos(lists);
+    dispatch(updatedActions(id))
   };
   return (
     <div className={`root ${backgroundColor}`}>
@@ -59,14 +69,14 @@ const Todos = () => {
               <img
                 src={iconSun}
                 alt=""
-                onClick={() => setBackgroundColor("light")}
+                onClick={() => dispatch(setTheme())}
               />
             )}
             {backgroundColor === "light" && (
               <img
                 src={iconMoon}
                 alt=""
-                onClick={() => setBackgroundColor("dark")}
+                onClick={() => dispatch(setTheme())}
               />
             )}
           </div>
@@ -90,11 +100,11 @@ const Todos = () => {
             ))}
             <Footer
               bgColor={backgroundColor}
-              num={7}
-              onGetAll={() => console.log("i was clicked")}
-              onGetAllActive={() => console.log("i was clicked")}
-              onGetAllCompleted={() => console.log("i was clicked")}
-              onClearAllCompleted={() => console.log("i was clicked")}
+              num={allActiveTodos.length}
+              onGetAll={() => setTodos(allTodos)}
+              onGetAllActive={() => setTodos(allActiveTodos)}
+              onGetAllCompleted={() => setTodos(allCompletedTodos)}
+              onClearAllCompleted={() => clearCompletedTodos()}
             />
           </div>
         </div>

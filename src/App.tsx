@@ -2,7 +2,7 @@ import Todos from '../src/components/Todos';
 
 const App = () => {
   return (
-    <Todos />
+      <Todos />
   )
 }
 
